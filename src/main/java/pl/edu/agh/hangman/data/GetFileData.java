@@ -10,15 +10,17 @@ import java.util.Random;
 import java.util.stream.Stream;
 
 public class GetFileData {
-    List<String> words;
+    private final List<String> words;
+    private final String filename;
 
     public GetFileData(String filename) {
-        this.words = readFile(filename);
+        this.filename = filename;
+        this.words = readFile();
     }
 
-    private List<String> readFile(String filename){
+    private List<String> readFile(){
         List<String> text = new ArrayList<>();
-        try (Stream<String> lines = Files.lines(Paths.get(getClass().getResource(filename).toURI()))){
+        try (Stream<String> lines = Files.lines(Paths.get(getClass().getResource(this.filename).toURI()))){
             text = lines
                     .filter(x -> x.matches("[a-zA-Z]+"))
                     .map(String::toLowerCase)

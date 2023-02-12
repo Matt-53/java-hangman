@@ -61,5 +61,7 @@ public class Hangman {
         var fd = new GetFileData("/slowa.txt");
         System.out.println(fd);
         System.out.println(fd.fetchRandomWord());
+
+
     }
 }
