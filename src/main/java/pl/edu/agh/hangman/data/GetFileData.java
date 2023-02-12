@@ -3,6 +3,7 @@ package pl.edu.agh.hangman.data;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
@@ -12,14 +13,20 @@ public class GetFileData {
     List<String> words;
 
     public GetFileData(String filename) {
+        this.words = readFile(filename);
+    }
+
+    private List<String> readFile(String filename){
+        List<String> text = new ArrayList<>();
         try (Stream<String> lines = Files.lines(Paths.get(getClass().getResource(filename).toURI()))){
-            this.words = lines
+            text = lines
                     .filter(x -> x.matches("[a-zA-Z]+"))
                     .map(String::toLowerCase)
                     .toList();
         } catch (Exception e){
             e.printStackTrace();
         }
+        return text;
     }
 
     public String fetchRandomWord(){
