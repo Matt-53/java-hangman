@@ -60,11 +60,5 @@ public class Hangman {
     };
 
     public static void main(String[] args) {
-
-        String word = "java";
-        String letter = "a";
-
-        List<String> underscoreList = SampleGivenWord.sampleGivenWord(word, letter);
-        boolean correctLetter = CheckLettersInWord.checkLettersInWord(word, letter, underscoreList);
     }
 }
